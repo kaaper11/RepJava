@@ -20,13 +20,13 @@ public class Main {
             default -> throw new RuntimeException("Nieprawidłowa wartość");
         }
 
-        String okresTygodnia = dzienTygodnia > 0 && dzienTygodnia < 6 ? "dzien roboczy" : "weekend";
+        String okresTygodnia = dzienTygodnia < 6 ? "dzien roboczy" : "weekend";
         System.out.println(okresTygodnia);
 
         switch (dzienTygodnia) {
-            case 1,2,3,4,5 -> System.out.println("autobus wujezdza o 5:30");
-            case 6 -> System.out.println("autobus wujezdza o 7:00");
-            case 7 -> System.out.println("autobus wujezdza o 9:00");
+            case 1, 2, 3, 4, 5 -> System.out.println("autobus wyjeżdża o 5:30");
+            case 6 -> System.out.println("autobus wyjeżdża o 7:00");
+            case 7 -> System.out.println("autobus wyjeżdża o 9:00");
         }
     }
 }
