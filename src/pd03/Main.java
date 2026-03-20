@@ -4,41 +4,37 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    static String zad1(int liczba) {
+    static String typeOfNumber(int liczba) {
         return liczba > 0 ? "positive" : "negative";
     }
 
-    static String zad2(int liczba) {
-        String wynikPodzilenosci;
-        if (liczba % 2 == 0 && liczba % 3 == 0) {
-            wynikPodzilenosci = "divisible by 2 and 3";
+    static String divisibilityOfNumber(int liczba) {
+        if (liczba % 6 == 0) {
+            return "divisible by 2 and 3";
         } else if (liczba % 2 == 0) {
-            wynikPodzilenosci = "divisible by 2";
+            return "divisible by 2";
         } else if (liczba % 3 == 0) {
-            wynikPodzilenosci = "divisible by 3";
+            return "divisible by 3";
         } else {
-            wynikPodzilenosci = "not divisible by 2 and 3";
+            return "not divisible by 2 and 3";
         }
-        return wynikPodzilenosci;
     }
 
-    static String zad3(int liczba) {
+    static String sizeOfNumber(int liczba) {
         int abs = Math.abs(liczba);
-        String rozmiarLiczby;
 
         if (abs > 1 && abs <= 10) {
-            rozmiarLiczby = "small";
+            return "small";
         } else if (abs > 11 && abs <= 100) {
-            rozmiarLiczby = "medium";
+            return "medium";
         } else {
-            rozmiarLiczby = "large";
+            return "large";
         }
-        return rozmiarLiczby;
     }
 
-    static void zad4(int liczba) {
+    static void printNumber(int liczba) {
         System.out.printf("Number: %d, Type: %s, Divisibility: %s, Size: %s",
-                liczba, zad1(liczba), zad2(liczba), zad3(liczba));
+                liczba, typeOfNumber(liczba), divisibilityOfNumber(liczba), sizeOfNumber(liczba));
     }
 
     public static void main(String[] args) {
@@ -49,7 +45,7 @@ public class Main {
             if (liczba == 0) {
                 throw new ArithmeticException();
             }
-            zad4(liczba);
+            printNumber(liczba);
         } catch (ArithmeticException e) {
             System.out.println("0 nie używamy!");
         } catch (InputMismatchException e) {
