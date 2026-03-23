@@ -22,7 +22,7 @@ class Player {
     }
 }
 
-class PlayerStatistic {
+class PlayerStatistic implements Comparable<PlayerStatistic> {
     private Player player;
     private double sumScore;
     private double meanScore;
@@ -68,6 +68,11 @@ class PlayerStatistic {
                 ", średnia wyników = " + meanScore +
                 ", minimalny wynik = " + minScore +
                 ", maksymalny wynik = " + maxScore;
+    }
+
+    @Override
+    public int compareTo(PlayerStatistic o) {
+        return Double.compare(o.getSumScore(), this.sumScore);
     }
 }
 
@@ -127,13 +132,7 @@ public class Main {
     }
 
     static void printLeaderboard(PlayerStatistic[] statistics) {
-        Arrays.sort(statistics, new Comparator<PlayerStatistic>() {
-
-            @Override
-            public int compare(PlayerStatistic o1, PlayerStatistic o2) {
-                return -Double.compare(o1.getSumScore(), o2.getSumScore());
-            }
-        });
+        Arrays.sort(statistics);
 
         int bestScoreIndex = 0;
         double bestScore = -10;
