@@ -10,7 +10,7 @@ public class Main3 {
                 System.out.print(" ");
                 iloscSpacji++;
             }
-            for (int l = 0; l < 5 - iloscSpacji; l++) {
+            for (int l = 0; l < 5 - iloscSpacji + k; l++) {
                 System.out.print("*");
             }
             System.out.println();
