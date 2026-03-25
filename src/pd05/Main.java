@@ -40,14 +40,14 @@ public class Main {
     }
 
     static double[][] rotatedMatrix(double[][] matrix) {
-        int varCount;
+        int indexToRotate;
         double[][] matrixRotated = new double[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrixRotated.length; i++) {
-            varCount = 2;
+            indexToRotate = 2;
             for (int j = 0; j < matrixRotated[i].length; j++) {
-                matrixRotated[i][j] = matrix[varCount][i];
-                varCount--;
+                matrixRotated[i][j] = matrix[indexToRotate][i];
+                indexToRotate--;
             }
         }
         return matrixRotated;
@@ -73,7 +73,7 @@ public class Main {
     static boolean isMatrixSymmetric(double[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] != matrix[j][i]) {
+                if (!Double.valueOf(matrix[i][j]).equals(Double.valueOf(matrix[j][i]))) {
                     return false;
                 }
             }
@@ -91,7 +91,7 @@ public class Main {
             System.out.println("Macierz transponowana");
             printMatrix(transposedMatrix(mainMatrix));
 
-            System.out.println("Maciezr obrucona o 90 stopni");
+            System.out.println("Macierz obrucona o 90 stopni");
             printMatrix(rotatedMatrix(mainMatrix));
 
             sumMatrix(mainMatrix);
