@@ -1,7 +1,5 @@
 package pd05;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,7 +28,7 @@ public class Main {
         System.out.println();
     }
 
-    static double[][] matrixTranspose(double[][] matrix) {
+    static double[][] transposedMatrix(double[][] matrix) {
         double[][] matrixTransposed = new double[matrix.length][matrix[0].length];
 
         for (int i = 0; i < matrixTransposed.length; i++) {
@@ -41,7 +39,7 @@ public class Main {
         return matrixTransposed;
     }
 
-    static double[][] matrixRotate(double[][] matrix) {
+    static double[][] rotatedMatrix(double[][] matrix) {
         int varCount;
         double[][] matrixRotated = new double[matrix.length][matrix[0].length];
 
@@ -84,7 +82,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         try {
             double[][] mainMatrix = loadMatrix();
 
@@ -92,10 +89,10 @@ public class Main {
             printMatrix(mainMatrix);
 
             System.out.println("Macierz transponowana");
-            printMatrix(matrixTranspose(mainMatrix));
+            printMatrix(transposedMatrix(mainMatrix));
 
             System.out.println("Maciezr obrucona o 90 stopni");
-            printMatrix(matrixRotate(mainMatrix));
+            printMatrix(rotatedMatrix(mainMatrix));
 
             sumMatrix(mainMatrix);
 
