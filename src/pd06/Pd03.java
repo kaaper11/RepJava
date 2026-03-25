@@ -5,7 +5,7 @@ public class Pd03 {
         try {
             MathLibrary.methodMenu();
         } catch (RuntimeException e) {
-            System.out.println("Za każdym razem podawaj liczbe całkowitą!");
+            System.out.println("Problem :" + e.getMessage());
         }
     }
 }

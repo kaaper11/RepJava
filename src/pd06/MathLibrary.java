@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class MathLibrary {
     /**
-     * Metoda liczy silnie rekurencyjnie liczby podanej przez użytkownika jako parametr.
+     * Method recursively calculates the factorial of the number given as a parameter.
      *
-     * @param n liczba, której silnie chcemy obliczać
-     * @return wynik oblczenia silni
+     * @param n the number for which we want to calculate the factorial
+     * @return the result of the factorial calculation
      */
     static long recFactorial(int n) {
         if (n <= 1) {
@@ -20,10 +20,10 @@ public class MathLibrary {
     }
 
     /**
-     * Metoda liczy silnie iteracyjnie liczby podanej przez użytkownika jako parametr.
+     * Method iteratively calculates the factorial of the number given as a parameter.
      *
-     * @param n liczba, której silnie chcemy obliczać
-     * @return wynik oblczenia silni
+     * @param n the number for which we want to calculate the factorial
+     * @return the result of the factorial calculation
      */
     static long secFactorial(int n) {
         int factorialResult = 1;
@@ -34,10 +34,10 @@ public class MathLibrary {
     }
 
     /**
-     * Metoda sprawdza czy liczba podana jako argument jest liczbą pierwszą.
+     * Method checks whether the number provided as an argument is prime.
      *
-     * @param n liczba, którą sparwdzamy czy jest pierwsza
-     * @return wynik sprawdzenia czy liczba jest pierwsza
+     * @param n the number to check for primality
+     * @return true if the number is prime, false otherwise
      */
     static boolean isPrime(int n) {
         if (n <= 1) {
@@ -52,10 +52,10 @@ public class MathLibrary {
     }
 
     /**
-     * Metoda sprawdza, które liczby z konkretnego zakresu są pierwsze.
+     * Method determines which numbers in a given range are prime.
      *
-     * @param limit liczba, które określa limit przedziału
-     * @return tablica przechowująca wyniki [0,1], czy liczba jest pierwsza
+     * @param limit the upper limit of the range to check
+     * @return an array storing results [0,1] indicating whether each number is prime
      */
     static int[] sieveOfEratosthenes(int limit) {
         int[] prime = new int[limit];
@@ -75,12 +75,12 @@ public class MathLibrary {
     }
 
     /**
-     * Metoda znajduje największy wspólny dzielnik dwóch liczb.
+     * Method finds the greatest common divisor (GCD) of two numbers.
      *
-     * @param a pierwsza liczba całkowita
-     * @param b druga liczba całkowita
-     * @return największy wspólny dzielnik liczb a i b
-     * throws ArithmeticException w sytuacji, kiedy b = 0
+     * @param a the first integer
+     * @param b the second integer
+     * @return the greatest common divisor of a and b
+     * @throws ArithmeticException if b equals 0
      */
     static int gcd(int a, int b) {
         if (b == 0) {
@@ -94,7 +94,7 @@ public class MathLibrary {
     }
 
     /**
-     * Metoda komunukuje się z użytkownikiem i wczytuje odpowiedni metody oraz argumenty tych metod.
+     * Method communicates with the user and reads the selected method and its arguments.
      */
     static void methodMenu() {
         Scanner sc = new Scanner(System.in);
