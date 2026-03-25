@@ -9,6 +9,9 @@ public class Main2 {
             licznik = 0;
             j = 1;
             while (i >= j) {
+                if (licznik > 2){
+                    break;
+                }
                 if (i % j == 0) {
                     licznik++;
                 }
