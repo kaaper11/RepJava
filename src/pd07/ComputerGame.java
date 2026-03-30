@@ -2,18 +2,20 @@ package pd07;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ComputerGame extends RentableResource {
     private final String gameGenre;
 
-    public ComputerGame(String id, String name, double basePrice, String gameGenre) {
+    public ComputerGame(String id, String name, BigDecimal basePrice, String gameGenre) {
         super(id, name, basePrice, ResourceType.COMPUTER_GAME);
         this.gameGenre = gameGenre;
     }
 
     @Override
-    public double calculatePrice(int days) {
-        return days * getBasePrice() * 1.2;
+    public BigDecimal calculatePrice(int days) {
+        return (getBasePrice().multiply(new BigDecimal(days))).multiply(new BigDecimal("1.2"));
     }
 
     @Override

@@ -3,6 +3,7 @@ package pd07;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @ToString
@@ -15,11 +16,11 @@ public class ResourcesSystem {
     }
 
     public void allResourcesPrice() {
-        double fullPrice = 0.0;
+        BigDecimal fullPrice = new BigDecimal(0);
         for (SingleRental rental : rentals) {
-            fullPrice += rental.getResource().calculatePrice(rental.getRentDays());
+            fullPrice = fullPrice.add(rental.getResource().calculatePrice(rental.getRentDays()));
         }
-        System.out.println("Łączny koszt wszytskich wypożyczeń: " + fullPrice + " zł\n");
+        System.out.println("Łączny koszt wszytskich wypożyczeń: " + fullPrice.setScale(2) + " zł\n");
     }
 
     public void countByStatus(ResourceStatus status) {

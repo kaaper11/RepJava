@@ -2,16 +2,18 @@ package pd07;
 
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Getter
 public abstract class RentableResource implements Comparable<RentableResource> {
 
     private static int resourceCount;
     private final String id;
     private final String name;
-    private double basePrice;
+    private BigDecimal basePrice;
     private final ResourceType type;
 
-    public RentableResource(String id, String name, double basePrice, ResourceType type) {
+    public RentableResource(String id, String name, BigDecimal basePrice, ResourceType type) {
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
@@ -21,7 +23,7 @@ public abstract class RentableResource implements Comparable<RentableResource> {
 
     @Override
     public int compareTo(RentableResource o) {
-        return Double.compare(this.basePrice, o.basePrice);
+        return o.basePrice.compareTo(this.basePrice);
     }
 
     @Override
@@ -29,5 +31,5 @@ public abstract class RentableResource implements Comparable<RentableResource> {
         return "Zasób: " + id + ", " + name + ", " + basePrice + ", " + type + ",";
     }
 
-    public abstract double calculatePrice(int days);
+    public abstract BigDecimal calculatePrice(int days);
 }

@@ -1,14 +1,15 @@
 package pd07;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        RentableResource harryPotter = new Book("12d", "Harry Potter", 10.0, "J.K. Rowling");
-        RentableResource wiedzmin3 = new ComputerGame("23cd", "Widzmin 3", 3.50, "RPG");
-        RentableResource hobbit = new Book("13d", "Hobbit", 12.3, "J.R.R. Tolkien");
-        RentableResource cs2 = new ComputerGame("24cd", "Cs2", 8.10, "FPS");
+        RentableResource harryPotter = new Book("12d", "Harry Potter", new BigDecimal("10.0"), "J.K. Rowling");
+        RentableResource wiedzmin3 = new ComputerGame("23cd", "Widzmin 3", new BigDecimal("3.50"), "RPG");
+        RentableResource hobbit = new Book("13d", "Hobbit", new BigDecimal("12.3"), "J.R.R. Tolkien");
+        RentableResource cs2 = new ComputerGame("24cd", "Cs2", new BigDecimal("8.10"), "FPS");
 
 
         ResourcesSystem resourcesSystem = new ResourcesSystem();
