@@ -5,13 +5,11 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        Resource harryPotter = new Book("12d", "Harry Potter", 10.0, ResourceType.BOOK, "J.K. Rowling");
-        Resource wiedzmin3 = new ComputerGame("23cd", "Widzmin 3", 3.50, ResourceType.COMPUTER_GAME, "RPG");
-        Resource hobbit = new Book("13d", "Hobbit", 12.3, ResourceType.BOOK, "J.R.R. Tolkien");
-        Resource cs2 = new ComputerGame("24cd", "Cs2", 8.10, ResourceType.COMPUTER_GAME, "FPS");
+        RentableResource harryPotter = new Book("12d", "Harry Potter", 10.0, "J.K. Rowling");
+        RentableResource wiedzmin3 = new ComputerGame("23cd", "Widzmin 3", 3.50, "RPG");
+        RentableResource hobbit = new Book("13d", "Hobbit", 12.3, "J.R.R. Tolkien");
+        RentableResource cs2 = new ComputerGame("24cd", "Cs2", 8.10, "FPS");
 
-        System.out.println("Ilość stworzonych zasobów: " + Resource.resourceCount);
-        System.out.println();
 
         ResourcesSystem resourcesSystem = new ResourcesSystem();
         resourcesSystem.addResource(harryPotter, 10, ResourceStatus.COMPLETED);
@@ -28,7 +26,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Sortowanie po nazwie");
-        Collections.sort(resourcesSystem.getRentals(), Comparator.comparing(x -> x.getResource().getName()));
+        Collections.sort(resourcesSystem.getRentals(), Comparator.comparing(SingleRental::getResourceName));
         System.out.println(resourcesSystem);
         System.out.println();
 

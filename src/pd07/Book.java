@@ -1,14 +1,13 @@
 package pd07;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class Book extends Resource {
+public class Book extends RentableResource {
     private final String author;
 
-    public Book(String id, String name, double basePrice, ResourceType type, String author) {
-        super(id, name, basePrice, type);
+    public Book(String id, String name, double basePrice, String author) {
+        super(id, name, basePrice, ResourceType.BOOK);
         this.author = author;
     }
 

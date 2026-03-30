@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ResourcesSystem {
     private final ArrayList<SingleRental> rentals = new ArrayList<>();
 
-    public void addResource(Resource resource, int rentDays, ResourceStatus status) {
+    public void addResource(RentableResource resource, int rentDays, ResourceStatus status) {
         rentals.add(new SingleRental(resource, rentDays, status));
     }
 

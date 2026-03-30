@@ -1,20 +1,17 @@
 package pd07;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
-@Data
-public abstract class Resource implements Comparable<Resource> {
+@Getter
+public abstract class RentableResource implements Comparable<RentableResource> {
 
-    public static int resourceCount;
+    private static int resourceCount;
     private final String id;
     private final String name;
     private double basePrice;
     private final ResourceType type;
 
-    public Resource(String id, String name, double basePrice, ResourceType type) {
+    public RentableResource(String id, String name, double basePrice, ResourceType type) {
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
@@ -23,7 +20,7 @@ public abstract class Resource implements Comparable<Resource> {
     }
 
     @Override
-    public int compareTo(Resource o) {
+    public int compareTo(RentableResource o) {
         return Double.compare(this.basePrice, o.basePrice);
     }
 

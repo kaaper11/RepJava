@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class SingleRental implements Comparable<SingleRental> {
 
-    private final Resource resource;
+    private final RentableResource resource;
     private int rentDays;
     private ResourceStatus status;
 
@@ -19,5 +19,9 @@ public class SingleRental implements Comparable<SingleRental> {
     @Override
     public int compareTo(SingleRental o) {
         return this.resource.compareTo(o.resource);
+    }
+
+    public String getResourceName() {
+        return resource.getName();
     }
 }

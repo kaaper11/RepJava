@@ -3,11 +3,11 @@ package pd07;
 import lombok.Data;
 
 @Data
-public class ComputerGame extends Resource {
+public class ComputerGame extends RentableResource {
     private final String gameGenre;
 
-    public ComputerGame(String id, String name, double basePrice, ResourceType type, String gameGenre) {
-        super(id, name, basePrice, type);
+    public ComputerGame(String id, String name, double basePrice, String gameGenre) {
+        super(id, name, basePrice, ResourceType.COMPUTER_GAME);
         this.gameGenre = gameGenre;
     }
 
