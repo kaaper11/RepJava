@@ -1,4 +1,5 @@
 package pd09;
+
 @FunctionalInterface
 public interface Transformer<T> {
     T transformer(T t);

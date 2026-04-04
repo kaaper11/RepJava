@@ -16,11 +16,11 @@ public class Main {
     public static void main(String[] args) {
 
         List<String> stringList = List.of(" aaaaaaa", "  bbbbbb  b", "   ccccccc  ");
-        Transformer<String> stringTransform = StringTransformer
+        Transformer<String> stringTransform = StringTransformations
                 .removeSpaces()
-                .chainMethod(StringTransformer.addPrefix("COS"))
-                .chainMethod(StringTransformer.substtToMax(5))
-                .chainMethod(StringTransformer.toUpper());
+                .chainMethod(StringTransformations.addPrefix("COS"))
+                .chainMethod(StringTransformations.substrToMax(5))
+                .chainMethod(StringTransformations.toUpper());
 
         List<String> result = toList(stringList, stringTransform);
         System.out.println(result);
