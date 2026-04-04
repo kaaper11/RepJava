@@ -49,7 +49,8 @@ public class NumberStats<T extends Number & Comparable<T>> {
     }
 
     private List<T> getSorted() {
-        Collections.sort(listOfNumber);
-        return listOfNumber;
+        List<T> sortedListOfNumber = new ArrayList<>(listOfNumber);
+        Collections.sort(sortedListOfNumber);
+        return sortedListOfNumber;
     }
 }
