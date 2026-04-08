@@ -43,21 +43,20 @@ public class DiscountTask {
 
     // LEGACY CODE DO PRZEPISANIA
     public static String resolveDiscountCode(User user) {
-        Optional<User> userOpt = Optional.ofNullable(user);
-        return userOpt
-                .flatMap(User::getSubscription)
+        return Optional.ofNullable(user)
+                        .flatMap(User::getSubscription)
                         .filter(Subscription::isActive)
                         .flatMap(Subscription::getDiscountCode)
                         .flatMap(DiscountTask::normalizeCode)
-                .or(() -> userOpt
+                .or(() -> Optional.ofNullable(user)
                         .flatMap(User::getReferralProgram)
                         .filter(ReferralProgram::isEnabled)
                         .flatMap(ReferralProgram::getReferralCode)
                         .flatMap(DiscountTask::normalizeCode))
-                .or(() -> userOpt
+                .or(() -> Optional.ofNullable(user)
                         .flatMap(User::getLoyaltyPoints)
-                        .filter(user1 -> user1 >= 1000)
-                        .map(user1 -> "LOYAL20")
+                        .filter(loyalityPoints -> loyalityPoints >= 1000)
+                        .map(loyalityPoints -> "LOYAL20")
                 )
                 .orElse("DEFAULT10");
     }
