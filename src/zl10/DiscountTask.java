@@ -1,6 +1,7 @@
 package zl10;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Optional;
 
@@ -89,12 +90,9 @@ public class DiscountTask {
 
     @AllArgsConstructor
     static class Subscription {
+        @Getter
         private final boolean active;
         private final String discountCode;
-
-        public boolean isActive() {
-            return active;
-        }
 
         public Optional<String> getDiscountCode() {
             return Optional.ofNullable(discountCode);
@@ -103,12 +101,9 @@ public class DiscountTask {
 
     @AllArgsConstructor
     static class ReferralProgram {
+        @Getter
         private final boolean enabled;
         private final String referralCode;
-
-        public boolean isEnabled() {
-            return enabled;
-        }
 
         public Optional<String> getReferralCode() {
             return Optional.ofNullable(referralCode);
