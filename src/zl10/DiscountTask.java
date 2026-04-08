@@ -1,5 +1,7 @@
 package zl10;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Optional;
 
 public class DiscountTask {
@@ -42,17 +44,18 @@ public class DiscountTask {
     public static String resolveDiscountCode(User user) {
         Optional<User> userOpt = Optional.ofNullable(user);
         return userOpt
-                .flatMap(user1 -> Optional.ofNullable(user1.getSubscription())
+                .flatMap(User::getSubscription)
                         .filter(Subscription::isActive)
-                        .map(Subscription::getDiscountCode)
-                        .flatMap(DiscountTask::normalizeCode))
+                        .flatMap(Subscription::getDiscountCode)
+                        .flatMap(DiscountTask::normalizeCode)
                 .or(() -> userOpt
-                        .flatMap(user1 -> Optional.ofNullable(user1.getReferralProgram()))
+                        .flatMap(User::getReferralProgram)
                         .filter(ReferralProgram::isEnabled)
-                        .map(ReferralProgram::getReferralCode)
+                        .flatMap(ReferralProgram::getReferralCode)
                         .flatMap(DiscountTask::normalizeCode))
                 .or(() -> userOpt
-                        .filter(user1 -> user1.getLoyaltyPoints() >= 1000)
+                        .flatMap(User::getLoyaltyPoints)
+                        .filter(user1 -> user1 >= 1000)
                         .map(user1 -> "LOYAL20")
                 )
                 .orElse("DEFAULT10");
@@ -65,63 +68,50 @@ public class DiscountTask {
                 .map(String::toUpperCase);
     }
 
+    @AllArgsConstructor
     static class User {
         private final Subscription subscription;
         private final ReferralProgram referralProgram;
         private final int loyaltyPoints;
 
-        User(Subscription subscription, ReferralProgram referralProgram, int loyaltyPoints) {
-            this.subscription = subscription;
-            this.referralProgram = referralProgram;
-            this.loyaltyPoints = loyaltyPoints;
+        public Optional<Subscription> getSubscription() {
+            return Optional.ofNullable(subscription);
         }
 
-        public Subscription getSubscription() {
-            return subscription;
+        public Optional<ReferralProgram> getReferralProgram() {
+            return Optional.ofNullable(referralProgram);
         }
 
-        public ReferralProgram getReferralProgram() {
-            return referralProgram;
-        }
-
-        public int getLoyaltyPoints() {
-            return loyaltyPoints;
+        public Optional<Integer> getLoyaltyPoints() {
+            return Optional.ofNullable(loyaltyPoints);
         }
     }
 
+    @AllArgsConstructor
     static class Subscription {
         private final boolean active;
         private final String discountCode;
-
-        Subscription(boolean active, String discountCode) {
-            this.active = active;
-            this.discountCode = discountCode;
-        }
 
         public boolean isActive() {
             return active;
         }
 
-        public String getDiscountCode() {
-            return discountCode;
+        public Optional<String> getDiscountCode() {
+            return Optional.ofNullable(discountCode);
         }
     }
 
+    @AllArgsConstructor
     static class ReferralProgram {
         private final boolean enabled;
         private final String referralCode;
-
-        ReferralProgram(boolean enabled, String referralCode) {
-            this.enabled = enabled;
-            this.referralCode = referralCode;
-        }
 
         public boolean isEnabled() {
             return enabled;
         }
 
-        public String getReferralCode() {
-            return referralCode;
+        public Optional<String> getReferralCode() {
+            return Optional.ofNullable(referralCode);
         }
     }
 }
