@@ -12,6 +12,6 @@ import java.math.BigDecimal;
 public final class Trip {
     private final Destination destination;
     private final TransportType transport;
-    private final double price;
-    private final int duration;
+    private final BigDecimal price;
+    private final int dayDuration;
 }
