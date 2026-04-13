@@ -1,5 +1,7 @@
 package pd12;
 
+import org.apache.commons.lang3.AnnotationUtils;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +12,8 @@ public class Main {
         UserAccountV1 user1 = new UserAccountV1(1L, "user1", "user1");
         UserAccountV1 user2 = new UserAccountV1(1L, "user1", "user1");
         System.out.println(user1.equals(user2));
+
+        AnnotationUtils annotationUtils = new AnnotationUtils();
 
         userAccounts.add(user1);
         userAccounts.add(user2);
