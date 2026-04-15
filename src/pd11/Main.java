@@ -3,19 +3,10 @@ package pd11;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static pd11.UserRegistrationService.*;
+
 public class Main {
-    static HashMap<Integer, User> registerUsers = new HashMap<>();
-
-    static void checkEmail(String email) {
-        for (User user : registerUsers.values()) {
-            if (user.getEmail().equals(email)) {
-                throw new DuplicateEmailException();
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        int userID = 1;
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -28,11 +19,10 @@ public class Main {
                 UserRegistrationService.registerUser(name, email, password);
                 checkEmail(email);
 
-                registerUsers.put(1, User.of(name, email, "hashed_" + password));
+                addUser(User.of(name, email, "hashed_" + password));
                 System.out.println("Dodano użytkownika!");
 
                 System.out.println(registerUsers);
-                userID++;
             } catch (WeakPasswordException e) {
                 System.err.println(e.getMessage());
                 break;
