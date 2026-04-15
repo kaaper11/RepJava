@@ -70,31 +70,31 @@ public class Warehouse {
     }
 
     public Map<String, DoubleSummaryStatistics> getCategoryStatistics() {
-        Map<String, DoubleSummaryStatistics> map = new HashMap<>();
+        Map<String, DoubleSummaryStatistics> productStatisticMap = new HashMap<>();
 
         for (String category : byCategory.keySet()) {
             DoubleSummaryStatistics statistics = new DoubleSummaryStatistics();
             for (Product product : byCategory.get(category)) {
                 statistics.accept(product.getPrice().doubleValue());
             }
-            map.put(category, statistics);
+            productStatisticMap.put(category, statistics);
         }
-        return map;
+        return productStatisticMap;
     }
 
     public TreeMap<BigDecimal, List<Product>> exportSortedByPrice() {
-        TreeMap<BigDecimal, List<Product>> map = new TreeMap<>();
+        TreeMap<BigDecimal, List<Product>> decimalListMap = new TreeMap<>();
 
         for (Product product : inventory.values()) {
-            if (!map.containsKey(product.getPrice())) {
+            if (!decimalListMap.containsKey(product.getPrice())) {
                 ArrayList<Product> products = new ArrayList<>();
                 products.add(product);
-                map.put(product.getPrice(), products);
+                decimalListMap.put(product.getPrice(), products);
 
             } else {
-                map.get(product.getPrice()).add(product);
+                decimalListMap.get(product.getPrice()).add(product);
             }
         }
-        return map;
+        return decimalListMap;
     }
 }
