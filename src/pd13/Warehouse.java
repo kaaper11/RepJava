@@ -5,6 +5,8 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Getter
 public class Warehouse {
@@ -15,13 +17,7 @@ public class Warehouse {
     public void addProduct(Product product) {
         inventory.put(product.getId(), product);
 
-        if (byCategory.containsKey(product.getCategory())) {
-            byCategory.get(product.getCategory()).add(product);
-        } else {
-            Set<Product> set = new HashSet<>();
-            set.add(product);
-            byCategory.put(product.getCategory(), set);
-        }
+        byCategory.computeIfAbsent(product.getCategory(), k -> new HashSet<>()).add(product);
 
         if (product.getQuantity() < 5) {
             lowStock.offer(product);
@@ -70,31 +66,19 @@ public class Warehouse {
     }
 
     public Map<String, DoubleSummaryStatistics> getCategoryStatistics() {
-        Map<String, DoubleSummaryStatistics> productStatisticMap = new HashMap<>();
-
-        for (String category : byCategory.keySet()) {
-            DoubleSummaryStatistics statistics = new DoubleSummaryStatistics();
-            for (Product product : byCategory.get(category)) {
-                statistics.accept(product.getPrice().doubleValue());
-            }
-            productStatisticMap.put(category, statistics);
-        }
-        return productStatisticMap;
+        return byCategory.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().stream()
+                                .collect(Collectors.summarizingDouble(p -> p.getPrice().doubleValue()))
+                ));
     }
 
-    public TreeMap<BigDecimal, List<Product>> exportSortedByPrice() {
-        TreeMap<BigDecimal, List<Product>> decimalListMap = new TreeMap<>();
-
-        for (Product product : inventory.values()) {
-            if (!decimalListMap.containsKey(product.getPrice())) {
-                ArrayList<Product> products = new ArrayList<>();
-                products.add(product);
-                decimalListMap.put(product.getPrice(), products);
-
-            } else {
-                decimalListMap.get(product.getPrice()).add(product);
-            }
-        }
-        return decimalListMap;
+    public Map<BigDecimal, List<Product>> exportSortedByPrice() {
+        return inventory.values().stream()
+                .collect(Collectors.groupingBy(
+                        Product::getPrice,
+                        Collectors.toList()
+                ));
     }
 }
