@@ -1,0 +1,64 @@
+package pd13;
+
+import java.math.BigDecimal;
+
+public class Main {
+    public static void main(String[] args) {
+        Product p1 = new Product(1, "cos", "1", new BigDecimal("6"), 2);
+        Product p2 = new Product(2, "cos", "1", new BigDecimal("6"), 5);
+        Product p3 = new Product(3, "cos", "2", new BigDecimal("10"), 6);
+        Product p4 = new Product(4, "cos", "3", new BigDecimal("10"), 2);
+        Product p5 = new Product(5, "cos", "3", new BigDecimal("10"), 7);
+        Product p6 = new Product(6, "cos", "2", new BigDecimal("10"), 4);
+        Product p7 = new Product(7, "cos", "1", new BigDecimal("3"), 3);
+        Product p8 = new Product(8, "cos", "2", new BigDecimal("3"), 5);
+        Product p9 = new Product(9, "cos", "1", new BigDecimal("7"), 10);
+        Product p10 = new Product(10, "cos", "1", new BigDecimal("3"), 0);
+        Product p11 = new Product(11, "cos", "1", new BigDecimal("2"), 5);
+        Product p12 = new Product(12, "cos", "2", new BigDecimal("4"), 4);
+        Product p13 = new Product(13, "cos", "2", new BigDecimal("3"), 2);
+        Product p14 = new Product(14, "cos", "3", new BigDecimal("10"), 1);
+        Product p15 = new Product(15, "cos", "4", new BigDecimal("6"), 70);
+
+        Warehouse w = new Warehouse();
+
+        try {
+            w.addProduct(p1);
+            w.addProduct(p2);
+            w.addProduct(p3);
+            w.addProduct(p4);
+            w.addProduct(p5);
+            w.addProduct(p6);
+            w.addProduct(p7);
+            w.addProduct(p8);
+            w.addProduct(p9);
+            w.addProduct(p10);
+            w.addProduct(p11);
+            w.addProduct(p12);
+            w.addProduct(p13);
+            w.addProduct(p14);
+            w.addProduct(p15);
+
+            w.removeProduct(p2);
+            w.updateQuantity(p1, 10);
+
+            System.out.println(w.getInventory());
+            System.out.println();
+            System.out.println(w.getByCategory());
+            System.out.println();
+            System.out.println(w.getLowStock());
+            System.out.println();
+            System.out.println(w.findByCategory("1"));
+            System.out.println();
+            System.out.println(w.getLowStockReport());
+            System.out.println();
+            System.out.println(w.getCategoryStatistics());
+            System.out.println();
+            System.out.println(w.exportSortedByPrice());
+        } catch (NullPointerException e) {
+            System.err.println("Produkt nieprawidłowy, popraw i spróbuj ponowanie.");
+        } catch (Exception e) {
+            System.err.println("Błąd: " + e.getMessage());
+        }
+    }
+}
