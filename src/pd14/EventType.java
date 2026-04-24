@@ -1,5 +1,5 @@
 package pd14;
 
-public enum TypeOfEvent {
+public enum EventType {
     SPORT, MUSIC, OTHER
 }

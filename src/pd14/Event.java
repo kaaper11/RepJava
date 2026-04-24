@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Event {
-    private String name;
-    private int numberOfParticipants;
-    private TypeOfEvent type;
+    private final String name;
+    private final int numberOfParticipants;
+    private final EventType type;
 }
