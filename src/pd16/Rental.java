@@ -1,15 +1,18 @@
 package pd16;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
-@AllArgsConstructor(staticName = "of")
+@RequiredArgsConstructor(staticName = "of")
 @Getter
 @EqualsAndHashCode
 public class Rental {
     private final Game game;
     private final Client client;
+    private RentalStatus status = RentalStatus.ACTIVE;
+
+    public void returnGame() {
+        this.status = RentalStatus.INACTIVE;
+    }
+
 }

@@ -1,6 +1,5 @@
 package pd16;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -20,7 +19,7 @@ public class Game {
         this.name = name;
         this.category = category;
         this.rentalPrice = rentalPrice;
-        this.status = Status.FREE;
+        this.status = Status.AVAILABLE;
     }
 
     public static Game of(String name, Category category, BigDecimal rentalPrice) {
@@ -40,17 +39,17 @@ public class Game {
     }
 
     public void rent() {
-        if (status == Status.RENT) {
-            throw new RentException(Status.RENT);
+        if (status == Status.RENTED) {
+            throw new RentException(Status.RENTED);
         }
         numberOfRentals++;
-        status = Status.RENT;
+        status = Status.RENTED;
     }
 
     public void returnGame() {
-        if (status == Status.FREE) {
-            throw new RentException(Status.FREE);
+        if (status == Status.AVAILABLE) {
+            throw new RentException(Status.AVAILABLE);
         }
-        status = Status.FREE;
+        status = Status.AVAILABLE;
     }
 }

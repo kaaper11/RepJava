@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RentalService {
-    private static List<Rental> allRentals = new ArrayList<>();
-    private static List<Rental> activeRentals = new ArrayList<>();
+    private static RentalRepository rentalRepository = new RentalRepository();
 
     public static void rentGame(String gameName, String clientMail) {
         Game game = GameService.getGame(gameName).orElseThrow(() -> new NotFoundException(gameName));
@@ -17,8 +16,7 @@ public class RentalService {
         game.rent();
         client.rentGame();
 
-        activeRentals.add(Rental.of(game, client));
-        allRentals.add(Rental.of(game, client));
+        rentalRepository.safe(game, client);
 
         System.out.println("Dodano rezerwacje klienta: " + clientMail + ", na gre: " + gameName + ".");
     }
@@ -26,12 +24,9 @@ public class RentalService {
     public static void returnGame(String gameName, String clientMail) {
         Game game = GameService.getGame(gameName).orElseThrow(() -> new NotFoundException(gameName));
         Client client = ClientService.getClient(clientMail).orElseThrow(() -> new NotFoundException(clientMail));
+        Rental rental = rentalRepository.getRental(game, client).orElseThrow(() -> new NotFoundException("wypożyczenie"));
 
-        activeRentals.remove(activeRentals.stream()
-                .filter(rental -> rental.equals(Rental.of(game, client)))
-                .findFirst()
-                .orElseThrow(() -> new NotFoundException("wypożyczenia")));
-
+        rental.returnGame();
         game.returnGame();
         client.returnGame();
 
@@ -39,13 +34,14 @@ public class RentalService {
     }
 
     public static List<Rental> clientRentals(String clientMail) {
-        return activeRentals.stream()
-                .filter(rental -> rental.getClient().getMail().equals(clientMail))
+        return rentalRepository.getRentals().stream()
+                .filter(rental -> rental.getStatus().equals(RentalStatus.ACTIVE))
+                .filter(rental -> rental.getClient().getEmail().equals(clientMail))
                 .collect(Collectors.toList());
     }
 
     public static Map<Category, BigDecimal> calculateRevenueByCategory() {
-        return allRentals.stream()
+        return rentalRepository.getRentals().stream()
                 .collect(Collectors.groupingBy(rental -> rental.getGame().getCategory()))
                 .entrySet().stream()
                 .collect(Collectors.toMap(
