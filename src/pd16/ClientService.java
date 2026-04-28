@@ -3,24 +3,30 @@ package pd16;
 import java.util.*;
 
 public class ClientService {
-    private static ClientRepository clientRepository = new ClientRepository();
+    private ClientRepository clientRepository;
+    private ClientsValidator clientsValidator;
 
-    public static void addClient(Client client) {
-        Validator.clientNameValidation(client);
-        Validator.clientValidateContains(client, clientRepository);
-        clientRepository.safe(client);
+    public ClientService(ClientRepository clientRepository, ClientsValidator clientsValidator) {
+        this.clientRepository = clientRepository;
+        this.clientsValidator = clientsValidator;
+    }
+
+    public void addClient(Client client) {
+        clientsValidator.clientNameValidation(client);
+        clientsValidator.clientValidateContains(client, clientRepository);
+        clientRepository.save(client);
         System.out.println("Dodano klienta.");
     }
 
-    public static Optional<Client> getClient(String mail) {
+    public Optional<Client> getClient(String mail) {
         return clientRepository.getClient(mail);
     }
 
-    public static void getAllClients() {
+    public void getAllClients() {
        clientRepository.getAllClients().stream().forEach(System.out::println);
     }
 
-    public static Client getTopRentClient() {
+    public Client getTopRentClient() {
         return clientRepository.getAllClients().stream()
                 .max(Comparator.comparingInt(Client::getNumberOfActiveRentals))
                 .orElseThrow(() -> new NotFoundException("klientów"));

@@ -7,7 +7,7 @@ import java.util.Set;
 public class GameRepository {
     private static Set<Game> games = new HashSet<>();
 
-    public void safe(Game game) {
+    public void save(Game game) {
         games.add(game);
     }
 

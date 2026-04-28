@@ -5,9 +5,9 @@ import java.util.Optional;
 import java.util.Set;
 
 public class ClientRepository {
-    private static Set<Client> clients = new HashSet<>();
+    private Set<Client> clients = new HashSet<>();
 
-    public void safe(Client client) {
+    public void save(Client client) {
         clients.add(client);
     }
 
