@@ -1,5 +1,20 @@
 package pd16;
 
+import pd16.repository.ClientRepository;
+import pd16.repository.GameRepository;
+import pd16.repository.RentalRepository;
+import pd16.entity.Category;
+import pd16.entity.Client;
+import pd16.entity.Game;
+import pd16.exception.NotFoundException;
+import pd16.exception.RentException;
+import pd16.exception.ValidationException;
+import pd16.service.ClientService;
+import pd16.service.GameService;
+import pd16.service.RentalService;
+import pd16.validator.ClientsValidator;
+import pd16.validator.GamesValidator;
+
 import java.math.BigDecimal;
 
 public class Main {

@@ -1,7 +1,8 @@
-package pd16;
+package pd16.entity;
 
 import lombok.Getter;
 import lombok.ToString;
+import pd16.exception.RentException;
 
 import java.math.BigDecimal;
 import java.util.Objects;

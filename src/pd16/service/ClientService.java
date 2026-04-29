@@ -1,4 +1,9 @@
-package pd16;
+package pd16.service;
+
+import pd16.entity.Client;
+import pd16.validator.ClientsValidator;
+import pd16.exception.NotFoundException;
+import pd16.repository.ClientRepository;
 
 import java.util.*;
 

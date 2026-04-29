@@ -1,4 +1,6 @@
-package pd16;
+package pd16.repository;
+
+import pd16.entity.Game;
 
 import java.util.HashSet;
 import java.util.Optional;

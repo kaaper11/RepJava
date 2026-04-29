@@ -1,4 +1,8 @@
-package pd16;
+package pd16.validator;
+
+import pd16.entity.Game;
+import pd16.repository.GameRepository;
+import pd16.exception.ValidationException;
 
 import java.math.BigDecimal;
 

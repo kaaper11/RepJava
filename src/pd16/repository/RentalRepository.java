@@ -1,4 +1,8 @@
-package pd16;
+package pd16.repository;
+
+import pd16.entity.Client;
+import pd16.entity.Game;
+import pd16.entity.Rental;
 
 import java.util.ArrayList;
 import java.util.List;

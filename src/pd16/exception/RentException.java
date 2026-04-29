@@ -1,4 +1,6 @@
-package pd16;
+package pd16.exception;
+
+import pd16.entity.Status;
 
 public class RentException extends RuntimeException {
     public RentException(Status status) {

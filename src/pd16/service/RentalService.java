@@ -1,4 +1,12 @@
-package pd16;
+package pd16.service;
+
+import pd16.repository.RentalRepository;
+import pd16.entity.Client;
+import pd16.entity.Game;
+import pd16.entity.Rental;
+import pd16.entity.Category;
+import pd16.entity.RentalStatus;
+import pd16.exception.NotFoundException;
 
 import java.math.BigDecimal;
 import java.util.List;

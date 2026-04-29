@@ -1,4 +1,10 @@
-package pd16;
+package pd16.service;
+
+import pd16.entity.Category;
+import pd16.entity.Game;
+import pd16.validator.GamesValidator;
+import pd16.repository.GameRepository;
+import pd16.entity.Status;
 
 import java.util.*;
 import java.util.stream.Collectors;

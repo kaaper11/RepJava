@@ -1,4 +1,4 @@
-package pd16;
+package pd16.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

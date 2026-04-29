@@ -1,4 +1,4 @@
-package pd16;
+package pd16.exception;
 
 public class ValidationException extends RuntimeException {
     public ValidationException(String message) {

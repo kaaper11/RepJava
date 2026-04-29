@@ -1,4 +1,8 @@
-package pd16;
+package pd16.validator;
+
+import pd16.entity.Client;
+import pd16.repository.ClientRepository;
+import pd16.exception.ValidationException;
 
 public class ClientsValidator {
     public void clientNameValidation(Client client) {
