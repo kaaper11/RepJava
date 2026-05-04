@@ -1,0 +1,26 @@
+date,product_id,product_name,category,quantity,unit_price
+2026-01-01,P001,Laptop Pro 15,Electronics,2,4500
+2026-01-02,P002,Wireless Mouse,Electronics,10,80
+2026-01-03,P003,Office Chair,Furniture,3,600
+2026-01-04,P004,Desk Lamp,Furniture,5,120
+2026-01-05,P005,Coffee Beans 1kg,Food,8,70
+2026-01-06,P006,Green Tea Pack,Food,12,25
+2026-01-07,P007,Running Shoes,Sports,4,300
+2026-01-08,P008,Yoga Mat,Sports,6,90
+2026-01-09,P009,T-shirt Basic,Clothing,15,40
+2026-01-10,P010,Jeans Slim Fit,Clothing,7,150
+2026-01-11,P011,Smartphone X,Electronics,3,3200
+2026-01-12,P012,Monitor 27",Electronics,4,1200
+2026-01-13,P013,Bookshelf,Furniture,2,450
+2026-01-14,P014,Dining Table,Furniture,1,1500
+2026-01-15,P015,Chocolate Bar,Food,20,8
+2026-01-16,P016,Pasta 500g,Food,18,6
+2026-01-17,P017,Basketball,Sports,5,110
+2026-01-18,P018,Dumbbells Set,Sports,2,250
+2026-01-19,P019,Hoodie,Clothing,6,120
+2026-01-20,P020,Sneakers,Clothing,5,220
+2026-01-21,P021,Tablet 10",Electronics,3,1800
+2026-01-22,P022,Keyboard Mechanical,Electronics,6,300
+2026-01-23,P023,Office Desk,Furniture,2,900
+2026-01-24,P024,Protein Bar,Food,25,5
+2026-01-25,P025,Track Pants,Clothing,8,100
