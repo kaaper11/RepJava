@@ -4,16 +4,14 @@ import javax.swing.text.DateFormatter;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.stream.Stream;
 
 public class DateCalculator {
 
-    public int age(LocalDate birtDate) {
-        LocalDate today = LocalDate.now();
-        return (birtDate.getMonth().getValue() >= today.getMonth().getValue() && birtDate.getDayOfMonth() >= today.getDayOfMonth() && birtDate.equals(today)) ?
-                today.getYear() - birtDate.getYear() :
-                today.getYear() - birtDate.getYear() - 1;
+    public long age(LocalDate birtDate) {
+        return ChronoUnit.YEARS.between(birtDate, LocalDate.now());
     }
 
     public LocalDate nextPayDay(LocalDate from) {
@@ -28,8 +26,7 @@ public class DateCalculator {
 
     public long businessDaysBetween(LocalDate from, LocalDate to) {
         return Stream.iterate(from, localDate -> localDate.plusDays(1))
-                .limit(Duration.between(LocalDateTime.of(from.getYear(), from.getMonth().getValue(), from.getDayOfMonth(), 0, 0),
-                        LocalDateTime.of(to.getYear(), to.getMonth().getValue(), to.getDayOfMonth(), 0, 0)).toDays())
+                .limit(ChronoUnit.DAYS.between(from, to))
                 .filter(localDate -> localDate.getDayOfWeek() == DayOfWeek.SUNDAY || localDate.getDayOfWeek() == DayOfWeek.SATURDAY)
                 .count();
     }
