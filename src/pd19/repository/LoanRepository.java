@@ -1,7 +1,6 @@
 package pd19.repository;
 
 import pd19.entity.Loan;
-import pd19.exception.LoanNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,13 @@ public class LoanRepository {
                 .toList();
     }
 
-    public long getId() {
+    public List<Loan> getActiveLoans(long memberId) {
+        return loans.stream()
+                .filter(loan -> loan.getMember().getId() == memberId && loan.isActive())
+                .toList();
+    }
+
+    public long getNextId() {
         return idCounter++;
     }
 }

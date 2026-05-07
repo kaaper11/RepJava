@@ -22,11 +22,15 @@ public class Member {
     }
 
     public boolean canBorrow() {
-        return loans.size() < 3 ? true : false;
+        return loans.size() < 3;
     }
 
     public void borrow(Loan loan) {
         loans.add(loan);
+    }
+
+    public void returnBook(Loan loan) {
+        loans.remove(loan);
     }
 
     @Override

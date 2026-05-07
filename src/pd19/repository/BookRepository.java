@@ -1,7 +1,6 @@
 package pd19.repository;
 
 import pd19.entity.Book;
-import pd19.exception.BookNotFoundException;
 
 import java.util.*;
 
@@ -41,7 +40,7 @@ public class BookRepository {
                 .toList();
     }
 
-    public long getId() {
+    public long getNextId() {
         return idCounter++;
     }
 }

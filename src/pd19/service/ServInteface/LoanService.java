@@ -12,4 +12,6 @@ public interface LoanService {
     void returnBook(ReturnBookRequest returnBookRequest);
 
     List<LoanDto> findOverdue();
+
+    List<LoanDto> getActiveLoans(long id);
 }

@@ -9,6 +9,4 @@ public interface MemberService {
     void register(MemberDto memberDto);
 
     MemberDto findById(long id);
-
-    List<LoanDto> getActiveLoans(long id);
 }

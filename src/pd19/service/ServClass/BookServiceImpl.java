@@ -1,43 +1,41 @@
 package pd19.service.ServClass;
 
+import lombok.AllArgsConstructor;
 import pd19.dto.BookDto;
 import pd19.entity.Book;
 import pd19.exception.BookNotFoundException;
-import pd19.mapping.BookMapping;
+import pd19.mapper.BookMapper;
 import pd19.repository.BookRepository;
 import pd19.service.ServInteface.BookService;
 
 import java.util.List;
 
-public class BookServiceImp implements BookService {
+@AllArgsConstructor
+public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
-
-    public BookServiceImp(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     @Override
     public void addBook(BookDto book) {
-        bookRepository.save(BookMapping.bookMapping(book, bookRepository.getId()));
+        bookRepository.save(BookMapper.mapToBook(book, bookRepository.getNextId()));
     }
 
     @Override
     public BookDto findByLsbn(String lsbn) {
         Book book = bookRepository.getBookByIsbn(lsbn).orElseThrow(BookNotFoundException::new);
-        return BookMapping.bookDtoMapping(book);
+        return BookMapper.mapToBookDto(book);
     }
 
     @Override
     public List<BookDto> findAvailable() {
         return bookRepository.findAvailable().stream()
-                .map(BookMapping::bookDtoMapping)
+                .map(BookMapper::mapToBookDto)
                 .toList();
     }
 
     @Override
     public List<BookDto> search(String query) {
         return bookRepository.search(query).stream()
-                .map(BookMapping::bookDtoMapping)
+                .map(BookMapper::mapToBookDto)
                 .toList();
     }
 }

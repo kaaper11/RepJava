@@ -28,18 +28,7 @@ public class MemberRepository {
                 .findFirst();
     }
 
-    public List<Loan> getActiveLoans(long memberId) {
-        return members.stream()
-                .filter(member -> member.getId() == memberId)
-                .findFirst()
-                .map(Member::getLoans)
-                .orElseThrow(MemberNotFoundException::new)
-                .stream()
-                .filter(loan -> loan.getReturnedAt() == null)
-                .toList();
-    }
-
-    public long getId() {
+    public long getNextId() {
         return idCounter++;
     }
 }
