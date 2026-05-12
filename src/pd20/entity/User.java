@@ -18,11 +18,11 @@ public class User {
     @Setter
     private List<Post> posts;
 
-    public double getAddressLat(){
+    public double getAddressLat() {
         return address.getGeo().getLat();
     }
 
-    public double getAddressLng(){
+    public double getAddressLng() {
         return address.getGeo().getLng();
     }
 }

@@ -14,7 +14,8 @@ public class ReportWriter {
             mapper.writeValue(
                     new File("Z:\\Projects\\RepJava2\\src\\pd20\\userReport.json"),
                     userRaport
-            );        } catch (IOException e) {
+            );
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
