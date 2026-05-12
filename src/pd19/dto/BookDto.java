@@ -1,0 +1,4 @@
+package pd19.dto;
+
+public record BookDto(String isbn, String title, String author, int year, int availableCopies) {
+}
