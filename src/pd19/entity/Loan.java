@@ -2,6 +2,7 @@ package pd19.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pd19.exception.LoanAlreadyReturnException;
 
 import java.time.LocalDate;
 
@@ -28,11 +29,15 @@ public class Loan {
     }
 
     public void returnBook() {
+        if (returnedAt != null) {
+            throw new LoanAlreadyReturnException();
+        }
+
         returnedAt = LocalDate.now();
         book.returnBook();
     }
 
-    public boolean isActive(){
+    public boolean isActive() {
         return returnedAt == null;
     }
 }
